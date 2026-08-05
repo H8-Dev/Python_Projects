@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block titulo %}
+    <title>Pizzaria do Viscondi</title>
+{% endblock %}
+
+{% block conteudo%}
+
+    <h1 class="display-6">Histórico de Pedidos</h1>
+    <form action="{{ url_for('fazer_pedido') }}" method="GET">
+        <h2 class="display-6">Novo Pedido: <button type="submit" style="font-size: 12; display:inline;">Criar</button></h2>
+    </form>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                {% for key in pedidos[0].items() %}
+                    {% if key[0] == nome %}
+                        <th>{{ key[0] | upper}}</th>
+                    {% else %}
+                        <th>{{ key[0] | replace('_',' ') | capitalize }}</th>
+                    {% endif %}
+                {% endfor %}
+                <th>Excluir</th>
+            </tr>
+            
+        </thead>
+        {% for pizza in pedidos %}
+            <tbody>
+                <tr>
+                    <td>{{ pizza.uid }}</td>
+                    <td>{{ pizza.nome }}</td>
+                    <td>{{ pizza.sabor }}</td>
+                    <td>{{ pizza.tamanho }}</td>
+                    <td>{{ pizza.preco }}</td>
+                    <td>{{ pizza.entrega }}</td>
+                    <td>
+                        <form action="{{ url_for('concluir_pedido', uid=pizza.uid) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja deletar esse pedido?');">
+                            <button type="submit">Concluir</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+        <tbody>
+            
+        </tbody>
+    </table>
+
+{% endblock %}
