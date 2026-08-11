@@ -1,0 +1,25 @@
+Endpoints obrigatórios
+/usuarios - GET
+/usuarios/ - POST
+/usuarios - PUT
+/usuarios/ - DELETE
+/usuarios/Chamados - GET
+/chamados - GET
+/chamados/ - POST
+/chamados - PUT
+/chamados/ - DELETE
+
+/chamados/<id>/iniciar - PATCH - Altera o status para "Em atendimento".
+/chamados/<id>/encerrar - PATCH - Altera o status para "Encerrado".
+/chamados/abertos - GET - Lista apenas chamados abertos.
+/chamados/prioridade/alta - GET - Lista chamados de prioridade alta.
+
+/estatisticas - Retorna informações estatísticas do sistema.
+O endpoint /estatisticas deverá retornar um JSON semelhante ao exemplo abaixo:
+{
+ "usuarios": 15,
+ "chamados": 48,
+ "abertos": 10,
+ "em_atendimento": 8,
+ "encerrados": 30 
+} 
