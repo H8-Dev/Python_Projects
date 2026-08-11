@@ -1,0 +1,1 @@
+from ..models.chamado import Chamado
