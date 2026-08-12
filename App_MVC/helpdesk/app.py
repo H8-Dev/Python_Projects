@@ -1,6 +1,5 @@
-from flask import Flask, url_for, request, redirect, jsonify
+from flask import Flask, url_for, request, redirect, jsonify #type: ignore
 from database import db
-from enum import Enum
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "Helpdesk026"
