@@ -9,5 +9,5 @@ class Chamado(db.Model):
     prioridade = db.Column(db.String(5), nullable=False)
     status = db.Column(db.String(20), nullable=False, default='Aberto')
     tecnico = db.Column(db.String(50), nullable=True)
-    data_abertura = db.Column(db.DateTime, nullable=False)
+    data_abertura = db.Column(db.String(10), nullable=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
