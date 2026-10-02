@@ -1,5 +1,5 @@
 import pandas as pd #type: ignore
-import numpy as np #type: ignore
+import matplotlib.pyplot as plt #type: ignore
 
 df = pd.read_csv("transacoes.csv", encoding='latin1')
 
