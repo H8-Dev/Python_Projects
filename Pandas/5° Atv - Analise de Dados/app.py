@@ -1,5 +1,6 @@
 import pandas as pd #type: ignore
 import matplotlib.pyplot as plt #type: ignore
+import numpy as np #type: ignore
 
 df = pd.read_csv("transacoes.csv", encoding='latin1')
 
@@ -69,3 +70,27 @@ df_z_filtro = df[z_rule].copy
 print("Possíveis frauds: \n", df_z_filtro)
 
 #Parte 6
+valor_soma = pd.Series(df.groupby(df["data_transacao"].dt.date)["valor"].sum()).to_list()
+dates = pd.Series( df["data_transacao"].dt.date.drop_duplicates(keep='first') ).to_list()
+
+def criar_graf1(lista: list, dates:list):
+
+    fig, ax = plt.subplots()
+    ax.plot(dates, lista)
+    ax.set_title("Análise Transação Diária")
+    ax.set_ylim()
+    plt.show()
+
+valor_media = df["valor"].rolling(7).mean().to_list()
+datas = pd.Series( df["data_transacao"] ).to_list()
+
+def criar_graf2(valores: list, datas: list):
+    fig, ax = plt.subplots()
+    ax.plot(datas, valores)
+    ax.set_title("Análise Transação Semanal")
+    ax.set_ylim(bottom=500, top=7000)
+    plt.show()
+
+criar_graf1(valor_soma, dates)
+
+criar_graf2(valor_media, datas)
